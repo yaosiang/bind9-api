@@ -41,7 +41,11 @@
       "ts-node/register"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fungible-systems/zone-file": "^2.0.0",
+    "@types/lodash": "^4.14.178",
+    "lodash": "^4.17.21"
+  },
   "devDependencies": {
     "@types/chai": "^4",
     "@types/mocha": "^9",
