@@ -1,19 +1,19 @@
 {
-  "name": "node-typescript-template",
-  "version": "0.0.0",
-  "private": true,
+  "name": "bind9-api",
+  "version": "0.0.1",
+  "private": false,
   "description": "",
   "keywords": [],
-  "homepage": "https://github.com/evan361425/template-node-ts#readme",
+  "homepage": "https://github.com/yaosiang/bind9-api#readme",
   "bugs": {
-    "url": "https://github.com/evan361425/template-node-ts/issues"
+    "url": "https://github.com/yaosiang/bind9-api/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/evan361425/template-node-ts.git"
+    "url": "git+https://github.com/yaosiang/bind9-api.git"
   },
   "license": "SEE LICENSE IN LICENSE file",
-  "author": "Shueh Chou Lu <evanlu361425@gmail.com>",
+  "author": "Yao-Siang Su <yaosiang@me.com>",
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist/**/*.js dist/**/*.ts",
@@ -44,6 +44,7 @@
   "dependencies": {
     "@fungible-systems/zone-file": "^2.0.0",
     "@types/lodash": "^4.14.178",
+    "arg": "^5.0.1",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
@@ -62,7 +63,7 @@
     "nyc": "^15",
     "prettier": "^2",
     "source-map-support": "^0.5",
-    "ts-node": "^10",
+    "ts-node": "^10.5.0",
     "typescript": "^4"
   },
   "engines": {
