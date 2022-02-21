@@ -1,0 +1,11 @@
+.DS_Store
+.git
+.idea
+.github/
+test/
+.editorconfig
+.eslintrc
+.gitignore
+.mocharc.js
+.prettierignore
+.prettierrc
