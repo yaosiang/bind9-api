@@ -1,33 +1,31 @@
-FROM alpine:3 as builder
+FROM alpine:3.15 as builder
 
 WORKDIR /data
 
-RUN apk add curl && apk add nodejs && apk add npm
-
-COPY package.json ./
-RUN npm install --ignore-scripts && curl -s https://gobinaries.com/tj/node-prune | sh && node-prune
 COPY . .
+RUN apk add --no-cache curl && apk add --no-cache nodejs && apk add --no-cache npm && \
+    npm install --only=production --ignore-scripts
 
-FROM alpine:3
+FROM alpine:3.15
 
 ARG USER=app
 ENV HOME /home/$USER
 
-RUN apk add sudo && apk add curl && apk add jq && apk add git && apk add nodejs && apk add npm && apk add tzdata && cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime && echo "Asia/Taipei" > /etc/timezone
-RUN adduser -D $USER \
-        && echo "$USER ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/$USER \
-        && chmod 0440 /etc/sudoers.d/$USER
+RUN adduser -D $USER && \
+    apk add --no-cache curl && \
+    apk add --no-cache jq && \
+    apk add --no-cache git && \
+    apk add --no-cache nodejs && \
+    apk add --no-cache npm && \
+    apk add --no-cache tzdata && \
+    cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime && \
+    echo "Asia/Taipei" > /etc/timezone
 
 USER $USER
 WORKDIR $HOME
 
-COPY --from=builder /data/scripts/run.sh ./run.sh
-COPY --from=builder /data/src ./src
-COPY --from=builder /data/node_modules ./node_modules
-COPY --from=builder /data/tsconfig.base.json ./tsconfig.base.json
-COPY --from=builder /data/tsconfig.json ./tsconfig.json
-COPY --from=builder /data/tsconfig.production.json ./tsconfig.production.json
-
-RUN sudo chown -R $USER:$USER $HOME
+COPY --chown=$USER:$USER --from=builder /data/src/*.ts ./src/
+COPY --chown=$USER:$USER --from=builder /data/node_modules ./node_modules
+COPY --chown=$USER:$USER --from=builder /data/scripts/run.sh /data/tsconfig.* ./
 
 CMD ["sleep", "86400"]

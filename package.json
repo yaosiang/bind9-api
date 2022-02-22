@@ -43,14 +43,14 @@
   },
   "dependencies": {
     "@fungible-systems/zone-file": "^2.0.0",
-    "@types/lodash": "^4.14.178",
     "arg": "^5.0.1",
-    "lodash": "^4.17.21"
+    "@types/node": "^16",
+    "ts-node": "^10.5.0",
+    "typescript": "^4"
   },
   "devDependencies": {
     "@types/chai": "^4",
     "@types/mocha": "^9",
-    "@types/node": "^16",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
     "chai": "^4",
@@ -62,9 +62,7 @@
     "mocha": "^9",
     "nyc": "^15",
     "prettier": "^2",
-    "source-map-support": "^0.5",
-    "ts-node": "^10.5.0",
-    "typescript": "^4"
+    "source-map-support": "^0.5"
   },
   "engines": {
     "node": ">=14"

@@ -1,5 +1,4 @@
 import fs from 'fs';
-import _ from 'lodash';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const zonefile = require('@fungible-systems/zone-file');
 
@@ -20,10 +19,10 @@ export function addARecord(
   data: Record<string, any>,
 ): Record<string, any> {
   if (isDomainExist(name, data)) {
-    return _.cloneDeep(data);
+    return JSON.parse(JSON.stringify(data));
   }
 
-  const newData = _.cloneDeep(data);
+  const newData = JSON.parse(JSON.stringify(data));
   newData.a[newData.a.length] = { name: name, ip: ip };
 
   return newData;
@@ -33,7 +32,7 @@ export function increaseSerial(data: Record<string, any>): Record<string, any> {
   if (!data.soa || !data.soa.serial) {
     return data;
   }
-  const newData = _.cloneDeep(data);
+  const newData = JSON.parse(JSON.stringify(data));
   newData.soa.serial = data.soa.serial + 1;
 
   return newData;

@@ -9,3 +9,6 @@ test/
 .mocharc.js
 .prettierignore
 .prettierrc
+dist/
+manifests/
+node_modules/
